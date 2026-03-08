@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>Make Friends Locally & Meet People Near You | Ronda</title>
+  <meta name="description" content="Join Ronda and meet new people in your city through casual real-life outings. Over 3000 friendships sparked worldwide. No pressure, just people.">
+  
+  <!-- Google Fonts: Inter & Poppins -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,600;14..32,700&family=Poppins:wght@700&display=swap" rel="stylesheet">
+  
+  <!-- Schema.org for WebApplication (SEO) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Ronda",
+    "applicationCategory": "SocialNetworkingApplication",
+    "url": "https://ronda-app.com",
+    "operatingSystem": "Web",
+    "description": "Casual social outings to meet people and make friends — without pressure.",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.8",
+      "reviewCount": "3200"
+    }
+  }
+  </script>
+  
+  <style>
+    /* RESET & BASE */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #FFFFFF;
+      color: #2B2B2B;
+      line-height: 1.5;
+      scroll-behavior: smooth;
+    }
+
+    h1, h2, h3 {
+      font-family: 'Poppins', 'Inter', sans-serif;
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* COLORS */
+    .bg-cream { background-color: #FFF3EA; }
+    .text-dark { color: #2B2B2B; }
+    .text-coral { color: #F46A54; }
+
+    /* BUTTON PRIMARY (only CTA) */
+    .btn-cta {
+      display: inline-block;
+      background: linear-gradient(135deg, #F46A54, #FF7A63);
+      color: white;
+      font-weight: 600;
+      font-size: 1.2rem;
+      padding: 14px 36px;
+      border-radius: 60px;
+      text-decoration: none;
+      border: none;
+      box-shadow: 0 10px 20px rgba(244, 106, 84, 0.25);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      cursor: pointer;
+      text-align: center;
+    }
+
+    .btn-cta:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 18px 30px rgba(244, 106, 84, 0.35);
+    }
+
+    .btn-cta:active {
+      transform: translateY(0);
+    }
+
+    /* HEADER */
+    .site-header {
+      padding: 20px 0;
+      background: white;
+      border-bottom: 1px solid #FFE5DA;
+    }
+
+    .logo {
+      max-width: 140px;
+      height: auto;
+      display: block;
+    }
+
+    /* HERO */
+    .hero {
+      padding: 60px 0 40px;
+      text-align: center;
+      background: linear-gradient(to bottom, #FFFFFF, #FFF8F2);
+      position: relative;
+    }
+
+    .hero h1 {
+      font-size: 2.8rem;
+      margin-bottom: 1rem;
+      color: #2B2B2B;
+    }
+
+    .hero .tagline {
+      font-size: 1.4rem;
+      color: #F46A54;
+      font-weight: 500;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      max-width: 650px;
+      margin: 0 auto 2rem;
+      color: #4a4a4a;
+    }
+
+    /* Circle Enhancer + 3000+ stats */
+    .stats-badge {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 30px;
+      margin: 30px 0 20px;
+      flex-wrap: wrap;
+    }
+
+    .stat-item {
+      background: #FFF3EA;
+      border-radius: 60px;
+      padding: 12px 28px;
+      font-weight: 600;
+      color: #2B2B2B;
+      border: 2px solid #FF7A63;
+      box-shadow: 0 6px 0 #F46A54;
+      font-size: 1.1rem;
+    }
+
+    .stat-item span {
+      background: #F46A54;
+      color: white;
+      border-radius: 40px;
+      padding: 4px 14px;
+      margin-left: 10px;
+    }
+
+    /* CAROUSEL SECTION */
+    .carousel-section {
+      padding: 40px 0;
+      background: #FFF3EA;
+    }
+
+    .carousel-section h2 {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      font-size: 2rem;
+    }
+
+    .carousel {
+      max-width: 1000px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .carousel-track {
+      display: flex;
+      overflow-x: auto;
+      gap: 20px;
+      padding: 10px 0 20px;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: thin;
+      scrollbar-color: #F46A54 #FFDACF;
+    }
+
+    .carousel-track::-webkit-scrollbar {
+      height: 8px;
+    }
+
+    .carousel-track::-webkit-scrollbar-track {
+      background: #FFDACF;
+      border-radius: 10px;
+    }
+
+    .carousel-track::-webkit-scrollbar-thumb {
+      background: #F46A54;
+      border-radius: 10px;
+    }
+
+    .carousel-item {
+      flex: 0 0 auto;
+      width: 280px;
+      scroll-snap-align: start;
+      border-radius: 24px;
+      overflow: hidden;
+      background: white;
+      box-shadow: 0 12px 25px -8px rgba(0,0,0,0.15);
+      transition: transform 0.2s;
+    }
+
+    .carousel-item:hover {
+      transform: scale(1.02);
+    }
+
+    .carousel-item img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .carousel-caption {
+      padding: 16px 14px 18px;
+      background: white;
+    }
+
+    .carousel-caption h4 {
+      font-size: 1.2rem;
+      margin-bottom: 6px;
+      color: #2B2B2B;
+    }
+
+    /* SPECIAL DATING NOTE (50 anonymes) */
+    .dating-special {
+      background: #FFFFFF;
+      border-radius: 60px;
+      padding: 16px 28px;
+      margin: 30px auto 0;
+      max-width: 700px;
+      text-align: center;
+      border: 2px solid #FF7A63;
+      box-shadow: 0 8px 0 #F46A54;
+    }
+
+    .dating-special p {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: #2B2B2B;
+    }
+
+    .dating-special span {
+      background: #F46A54;
+      color: white;
+      padding: 4px 12px;
+      border-radius: 40px;
+      font-size: 1rem;
+      margin-left: 10px;
+      display: inline-block;
+    }
+
+    /* CITY SEO GRID (non-clickable keywords) */
+    .cities-seo {
+      padding: 60px 0;
+      background: white;
+    }
+
+    .cities-seo h2 {
+      text-align: center;
+      font-size: 2.2rem;
+      margin-bottom: 2rem;
+    }
+
+    .city-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 16px;
+      justify-items: center;
+    }
+
+    .city-tag {
+      background: #FFF3EA;
+      padding: 14px 22px;
+      border-radius: 60px;
+      font-weight: 600;
+      color: #2B2B2B;
+      width: 100%;
+      text-align: center;
+      border: 1px solid transparent;
+      transition: background 0.2s;
+    }
+
+    .city-tag:hover {
+      background: #F46A54;
+      color: white;
+      border-color: #F46A54;
+      transform: translateY(-3px);
+    }
+
+    /* CONCEPT SECTION */
+    .concept {
+      padding: 60px 0;
+      background: #FFF3EA;
+      text-align: center;
+    }
+
+    .concept h2 {
+      font-size: 2.2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .concept p {
+      max-width: 700px;
+      margin: 0 auto 2rem;
+      font-size: 1.2rem;
+    }
+
+    .features {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+      margin-top: 30px;
+    }
+
+    .feature {
+      background: white;
+      border-radius: 32px;
+      padding: 24px;
+      flex: 1 1 180px;
+      max-width: 220px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.03);
+    }
+
+    .feature h3 {
+      font-size: 1.2rem;
+    }
+
+    /* CTA BOTTOM */
+    .cta-bottom {
+      padding: 60px 0 80px;
+      text-align: center;
+      background: white;
+    }
+
+    .cta-bottom h3 {
+      font-size: 2.2rem;
+      margin-bottom: 1.8rem;
+    }
+
+    /* FOOTER */
+    .site-footer {
+      background: #2B2B2B;
+      color: #ccc;
+      padding: 30px 0;
+      text-align: center;
+      font-size: 0.9rem;
+    }
+
+    .site-footer a {
+      color: #FF9A87;
+      text-decoration: none;
+    }
+
+    /* RESPONSIVE TWEAKS */
+    @media (max-width: 700px) {
+      .hero h1 {
+        font-size: 2.2rem;
+      }
+      .hero .tagline {
+        font-size: 1.2rem;
+      }
+      .btn-cta {
+        font-size: 1rem;
+        padding: 12px 28px;
+      }
+      .city-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .dating-special p {
+        font-size: 1.1rem;
+      }
+      .stats-badge {
+        gap: 15px;
+      }
+      .stat-item {
+        font-size: 1rem;
+        padding: 10px 20px;
+      }
+    }
+
+    @media (max-width: 450px) {
+      .carousel-item {
+        width: 240px;
+      }
+    }
+
+    /* UTILITY */
+    .mt-2 { margin-top: 0.8rem; }
+    .mb-1 { margin-bottom: 0.5rem; }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER with logo -->
+  <header class="site-header">
+    <div class="container" style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap;">
+      <img src="logo.png" alt="Ronda logo" class="logo">
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO SECTION with stats and circle enhancer -->
+    <section class="hero">
+      <div class="container">
+        <h1>Meet People. Go Out. Make Friends.</h1>
+        <div class="tagline">Real-life social outings. No pressure. Just people.</div>
+        <p>Ronda helps you meet people in your city through simple casual outings.<br> Coffee, walks, drinks or spontaneous plans — join or start an outing anytime.</p>
+        
+        <!-- Circle enhancer + 3000+ friendships -->
+        <div class="stats-badge">
+          <div class="stat-item">✨ circle enhancer <span>active</span></div>
+          <div class="stat-item">🌍 3,000+ friendships made worldwide</div>
+        </div>
+
+        <a href="https://app.ronda-app.com" class="btn-cta">Join or Start an Outing</a>
+      </div>
+    </section>
+
+    <!-- CAROUSEL with images: visuel1.png to visuel5.png (à générer) -->
+    <section class="carousel-section">
+      <div class="container">
+        <h2>What's happening in your city?</h2>
+        <div class="carousel">
+          <div class="carousel-track">
+            <!-- visuel1.png -->
+            <div class="carousel-item">
+              <img src="visuel1.png" alt="Visuel 1">
+              <div class="carousel-caption">
+                <h4>Coffee & chat</h4>
+              </div>
+            </div>
+            <!-- visuel2.png -->
+            <div class="carousel-item">
+              <img src="visuel2.png" alt="Visuel 2">
+              <div class="carousel-caption">
+                <h4>Sunset walk</h4>
+              </div>
+            </div>
+            <!-- visuel3.png -->
+            <div class="carousel-item">
+              <img src="visuel3.png" alt="Visuel 3">
+              <div class="carousel-caption">
+                <h4>Drinks & board games</h4>
+              </div>
+            </div>
+            <!-- visuel4.png -->
+            <div class="carousel-item">
+              <img src="visuel4.png" alt="Visuel 4">
+              <div class="carousel-caption">
+                <h4>Modern art museum</h4>
+              </div>
+            </div>
+            <!-- visuel5.png -->
+            <div class="carousel-item">
+              <img src="visuel5.png" alt="Visuel 5">
+              <div class="carousel-caption">
+                <h4>50 strangers in a bar</h4>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Highlight for the 50 anonymes event -->
+        <div class="dating-special">
+          <p>50 strangers in a bar – real & exceptional encounters <span>insider night</span></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CITY SEO SECTION (non-clickable keywords) -->
+    <section class="cities-seo">
+      <div class="container">
+        <h2>Make friends — wherever you are</h2>
+        <div class="city-grid">
+          <div class="city-tag">make friends in New York</div>
+          <div class="city-tag">meet people in Los Angeles</div>
+          <div class="city-tag">make friends in London</div>
+          <div class="city-tag">meet people in Paris</div>
+          <div class="city-tag">find friends in Berlin</div>
+          <div class="city-tag">social outings Toronto</div>
+          <div class="city-tag">make friends in Sydney</div>
+          <div class="city-tag">meet people Barcelona</div>
+          <div class="city-tag">meet people in Chennai</div>
+          <div class="city-tag">casual meetups near me</div>
+          <div class="city-tag">social groups Tokyo</div>
+          <div class="city-tag">make friends CDMX</div>
+        </div>
+        <p style="text-align: center; margin-top: 2rem; color: #F46A54; font-weight: 500;">100+ cities worldwide</p>
+      </div>
+    </section>
+
+    <!-- CORE CONCEPT SECTION -->
+    <section class="concept">
+      <div class="container">
+        <h2>Simple Social Outings</h2>
+        <p>Ronda is built around one idea: real-life moments. Instead of endless messaging, people meet through simple activities.</p>
+        <div class="features">
+          <div class="feature">
+            <h3>grab a coffee</h3>
+          </div>
+          <div class="feature">
+            <h3>go for a walk</h3>
+          </div>
+          <div class="feature">
+            <h3>have a drink</h3>
+          </div>
+          <div class="feature">
+            <h3>explore the city</h3>
+          </div>
+          <div class="feature">
+            <h3>spontaneous plans</h3>
+          </div>
+        </div>
+        <p class="mt-2">Everyone can <strong>start or join an outing instantly</strong>.</p>
+      </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="cta-bottom">
+      <div class="container">
+        <h3>Ready to meet people in real life?</h3>
+        <a href="https://app.ronda-app.com" class="btn-cta">Join or Start an Outing</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <p>© 2025 Ronda — Real-life social outings. No pressure. Just people.</p>
+      <p><a href="/privacy">Privacy</a> • <a href="/terms">Terms</a> • <a href="https://ronda-app.com">ronda-app.com</a></p>
+    </div>
+  </footer>
+
+</body>
+</html>
